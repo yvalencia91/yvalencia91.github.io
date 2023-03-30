@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <H1>Home Page Test</H1>
-</body>
+    <title>Upload Image</title>
+  </head>
+  <body>
+    <h1>Upload Image</h1>
+    <form id="imageForm">
+      <input type="file" name="image">
+      <button type="submit">Upload</button>
+    </form>
+    <script>
+      const form = document.getElementById('imageForm');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        fetch('http://202.207.29.11:80/upload', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      });
+    </script>
+  </body>
 </html>
